@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Анекдотатор</title>
+    <link rel="stylesheet" href="css/register.css" asp-append-version="true" />
+</head>
+<body>
+    
+    <ul class="menu-main">
+    <li><a href="index.html">ГЛАВНАЯ</a></li>
+    <li><a href="contacts.html"> КОНТАКТЫ</a></li>
+    <div class="dropdown" >
+  	<button class="dropbtn" class="current">КАТЕГОРИИ</button>
+    <div class="dropdown-content">
+   	<a href="family.html">Семейные</a>
+    	<a href="#">Про армию</a>
+    	<a href="#">Про тёщу</a>
+     </div>
+     </div>
+    </ul>
+    <form class="formValidation" action="index.html" onsubmit="return checkPassword(this);">
+  <div class="container">
+    <h1>Регистрация</h1>
+    <p>Заполните форму для регистрации</p>
+    <hr>
+
+    
+    <label for="email"><b>Электронная почта</b></label>
+    <input type="email" placeholder="Введите почту" class="email" required>
+    <div class="errors" style="height: 20px; color: red"></div>
+
+
+    <label for="psw"><b>Пароль</b></label>
+    <input type="password" placeholder="Введите пароль" class="psw" required>
+    <div class="errors" style="height: 20px; color: red"></div>
+
+
+    <label for="psw-repeat"><b>Повторите пароль</b></label>
+    <input type="password" placeholder="Повторите пароль" class="psw-repeat" required>
+    <div class="errors" style="height: 20px; color: red"></div>
+      
+    <hr>
+    <button class="validateBtn" type="submit" class="registerbtn">Зарегистрироваться</button>
+  </div>
+
+  <div class="container signin">
+    <p>Уже есть аккаунт? <a href="#">Войти</a>.</p>
+  </div>
+  </form>
+    <script src="js/register.js"></script>
+</body>
+</html>
