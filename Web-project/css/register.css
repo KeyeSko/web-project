@@ -193,3 +193,13 @@ a {
   background-color: #f1f1f1;
   text-align: center;
 }
+
+.error .form-group{
+    border-color: red;
+}
+
+.error-label{
+    display: block;
+    color:red;
+    margin-bottom: 2px;
+}

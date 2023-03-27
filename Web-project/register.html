@@ -18,26 +18,29 @@
      </div>
      </div>
     </ul>
-    <form class="formValidation" action="index.html" onsubmit="return checkPassword(this);">
+    <form class="formValidation" action="index.html" onsubmit="">
   <div class="container">
     <h1>Регистрация</h1>
     <p>Заполните форму для регистрации</p>
     <hr>
 
+
+    <label for="email_"><b>Электронная почта</b></label>
+    <div class="form-group">
+    <input type="email" placeholder="Введите почту" class="email" name="email" required>
+  </div>
+
+  
+    <label for="password"><b>Пароль</b></label>
+  <div class="form-group"> 
+    <input type="password" placeholder="Введите пароль" class="psw" name="psw" required>
+  </div>
+
     
-    <label for="email"><b>Электронная почта</b></label>
-    <input type="email" placeholder="Введите почту" class="email" required>
-    <div class="errors" style="height: 20px; color: red"></div>
-
-
-    <label for="psw"><b>Пароль</b></label>
-    <input type="password" placeholder="Введите пароль" class="psw" required>
-    <div class="errors" style="height: 20px; color: red"></div>
-
-
-    <label for="psw-repeat"><b>Повторите пароль</b></label>
-    <input type="password" placeholder="Повторите пароль" class="psw-repeat" required>
-    <div class="errors" style="height: 20px; color: red"></div>
+    <label for="psw-r"><b>Повторите пароль</b></label>
+    <div class="form-group"></div>
+    <input type="password" placeholder="Повторите пароль" class="psw-repeat" name="psw" required>
+    </div>
       
     <hr>
     <button class="validateBtn" type="submit" class="registerbtn">Зарегистрироваться</button>
