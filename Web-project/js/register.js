@@ -9,16 +9,30 @@ document.addEventListener("DOMContentLoaded", (event) =>{
 
     const Inputs = form.querySelectorAll('input')
 
+    const psw = form.querySelector('.psw')
+    const psw_repeat = form.querySelector('.psw_repeat')
+
+    console.log(psw)
+    console.log(psw_repeat)
+
+
     function validateElem(elem){
         if(elem.name == 'email'){
             if(!regExpEmail.test(elem.value) && elem.value != ''){
+                removeError(elem)
                 createError(elem, 'email GG')
             }
             else removeError(elem)
         }
         if(elem.name == 'psw'){
             if(!regExpPassword.test(elem.value) && elem.value != ''){
+                removeError(elem)
                 createError(elem, 'Password GG')
+            }
+            else removeError(elem)
+            if(psw.value != psw_repeat.value && psw_repeat != ''){
+                removeError(psw_repeat)
+                createError(psw_repeat, "Пароли не совпадают")
             }
             else removeError(elem)
         }
@@ -32,6 +46,7 @@ document.addEventListener("DOMContentLoaded", (event) =>{
 
     function removeError(input){
         const parent = input.parentNode;
+
         
         if(parent.classList.contains('error')){
             parent.querySelector('.error-label').remove()
