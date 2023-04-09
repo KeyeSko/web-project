@@ -1,0 +1,132 @@
+.hello{
+    font-family: 'Times New Roman', Times, serif;
+}
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+
+.menu-main {
+    list-style: none;
+    margin: 40px 0 5px;
+    padding: 25px 0 5px;
+    text-align: center;
+    background: gray;
+    border-radius: 10px;
+}
+
+    .menu-main li {
+        display: inline-block;
+    }
+
+        .menu-main li:after {
+            content: "|";
+            color: #1ee8dc;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .menu-main li:last-child:after {
+            content: none;
+        }
+
+    .menu-main a {
+        text-decoration: none;
+        font-family: 'Ubuntu Condensed', sans-serif;
+        letter-spacing: 2px;
+        position: relative;
+        padding-bottom: 20px;
+        margin: 0 34px 0 30px;
+        font-size: 17px;
+        text-transform: uppercase;
+        display: inline-block;
+        transition: color .2s;
+    }
+
+        .menu-main a, .menu-main a:visited {
+            color: #1ee8dc;
+        }
+
+            .menu-main a.current, .menu-main a:hover {
+                color: #1ee8dc;
+            }
+
+            .menu-main a:before,
+            .menu-main a:after {
+                content: "";
+                position: absolute;
+                height: 4px;
+                top: auto;
+                right: 50%;
+                bottom: -5px;
+                left: 50%;
+                background: #1ee8dc;
+                transition: .8s;
+            }
+
+            .menu-main a:hover:before, .menu-main .current:before {
+                left: 0;
+            }
+
+            .menu-main a:hover:after, .menu-main .current:after {
+                right: 0;
+            }
+
+@media (max-width: 550px) {
+    .menu-main {
+        padding-top: 0;
+    }
+
+        .menu-main li {
+            display: block;
+        }
+
+            .menu-main li:after {
+                content: none;
+            }
+
+        .menu-main a {
+            padding: 25px 0 20px;
+            margin: 0 30px;
+        }
+}
+
+
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: gray;
+    color: #1ee8dc;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: gray;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
