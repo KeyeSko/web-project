@@ -13,3 +13,7 @@ def family(request):
 
 def contacts(request):
     return render(request, 'main/contacts.html')
+
+
+def profile(request):
+    return render(request, 'main/profile.html')
