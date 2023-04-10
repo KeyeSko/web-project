@@ -1,40 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Анекдотатор</title>
-    <link rel="stylesheet" href="css/register.css" asp-append-version="true" />
+    <link rel="stylesheet" href="css/register.css" asp-append-version="true"/>
 </head>
 <body>
 
-    <form class="formValidation" action="index.html" onsubmit="return checkPassword(this);">
-  <div class="container">
-    <h1>Регистрация</h1>
-    <p>Заполните форму для регистрации</p>
-    <hr>
-
-    
-    <label for="email"><b>Электронная почта</b></label>
-    <input type="email" placeholder="Введите почту" class="email" required>
-    <div class="errors" style="height: 20px; color: red"></div>
+<form class="formValidation" method="post">
+  {% csrf_token %}
+    <div class="container">
+        <h1>Регистрация</h1>
+        <p>Заполните форму для регистрации</p>
+        <hr>
 
 
-    <label for="psw"><b>Пароль</b></label>
-    <input type="password" placeholder="Введите пароль" class="psw" required>
-    <div class="errors" style="height: 20px; color: red"></div>
+        <label for="email"><b>Username</b></label>
+        <input placeholder="Введите username" class="email" name="username" required>
+        <div class="errors" style="height: 20px; color: red"></div>
 
 
-    <label for="psw-repeat"><b>Повторите пароль</b></label>
-    <input type="password" placeholder="Повторите пароль" class="psw-repeat" required>
-    <div class="errors" style="height: 20px; color: red"></div>
-      
-    <hr>
-    <button class="validateBtn" type="submit" class="registerbtn">Зарегистрироваться</button>
-  </div>
+        <label for="psw"><b>Пароль</b></label>
+        <input type="password" placeholder="Введите пароль" class="psw" name="password1" required>
+        <div class="errors" style="height: 20px; color: red"></div>
 
-  <div class="container signin">
-    <p>Уже есть аккаунт? <a href="#">Войти</a>.</p>
-  </div>
-  </form>
-    <script src="js/register.js"></script>
+
+        <label for="psw-repeat"><b>Повторите пароль</b></label>
+        <input type="password" placeholder="Повторите пароль" class="psw-repeat" name="password2" required>
+        <div class="errors" style="height: 20px; color: red"></div>
+
+        <hr>
+        {{ form.errors }}
+        <button class="validateBtn" type="submit" class="registerbtn">Зарегистрироваться</button>
+    </div>
+
+    <div class="container signin">
+        <p>Уже есть аккаунт? <a href="#">Войти</a>.</p>
+    </div>
+</form>
+<script src="js/register.js"></script>
 </body>
 </html>

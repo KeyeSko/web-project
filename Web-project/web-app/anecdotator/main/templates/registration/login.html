@@ -15,7 +15,7 @@
 
 
         <label for="email"><b>Электронная почта</b></label>
-        <input type="email" name="username" placeholder="Введите почту" class="email" required>
+        <input name="username" placeholder="Введите почту" class="email" required>
         <div class="errors" style="height: 20px; color: red"></div>
 
 
@@ -29,7 +29,7 @@
     </div>
 
     <div class="container signin">
-        <p>Уже есть аккаунт? <a href="#">Зарегестрироваться</a>.</p>
+        <p>Уже есть аккаунт? <a href="{% url 'register' %}">Зарегестрироваться</a>.</p>
     </div>
 </form>
 <script src="{% static 'main/js/register.js'%}"></script>
