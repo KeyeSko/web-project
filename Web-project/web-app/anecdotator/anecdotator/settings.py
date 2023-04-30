@@ -123,7 +123,7 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-AUTH_USER_MODEL = "main.User"
+AUTH_USER_MODEL = "auth.User"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -132,3 +132,4 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = reverse_lazy("main:profile")
+LOGOUT_REDIRECT_URL = "/"

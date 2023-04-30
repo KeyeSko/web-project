@@ -6,25 +6,19 @@
     <link rel="stylesheet" href="{% static 'main/css/register.css'%}" asp-append-version="true"/>
 </head>
 <body>
-<form class="formValidation" method="post">
-  {% csrf_token %}
+<form action="{% url 'login' %}" class="formValidation" method="post">
+
     <div class="container">
         <h1>Авторизация</h1>
         <p>Заполните форму для авторизации</p>
-        <hr>
+
+        {{ form }}
+        {% if form.errors %}
+        <p>{{ form.errors.error }}</p>
+        {% endif %}
 
 
-        <label for="email"><b>Электронная почта</b></label>
-        <input name="username" placeholder="Введите почту" class="email" required>
-        <div class="errors" style="height: 20px; color: red"></div>
-
-
-        <label for="psw"><b>Пароль</b></label>
-        <input type="password" name="password" placeholder="Введите пароль" class="psw" required>
-        <div class="errors" style="height: 20px; color: red"></div>
-
-      {{ form.errors }}
-        <hr>
+        {% csrf_token %}
         <button class="registerbtn">Войти</button>
     </div>
 

@@ -7,35 +7,19 @@
 </head>
 <body>
 
-<form class="formValidation" method="post">
-  {% csrf_token %}
+<form action="{% url 'register' %}" class="formValidation" method="post">
+
     <div class="container">
         <h1>Регистрация</h1>
         <p>Заполните форму для регистрации</p>
-        <hr>
-
-
-        <label for="email"><b>Username</b></label>
-        <input placeholder="Введите username" class="email" name="username" required>
-        <div class="errors" style="height: 20px; color: red"></div>
-
-
-        <label for="psw"><b>Пароль</b></label>
-        <input type="password" placeholder="Введите пароль" class="psw" name="password1" required>
-        <div class="errors" style="height: 20px; color: red"></div>
-
-
-        <label for="psw-repeat"><b>Повторите пароль</b></label>
-        <input type="password" placeholder="Повторите пароль" class="psw-repeat" name="password2" required>
-        <div class="errors" style="height: 20px; color: red"></div>
-
-        <hr>
+        {{ form }}
         {{ form.errors }}
+        {% csrf_token %}
         <button class="validateBtn" type="submit" class="registerbtn">Зарегистрироваться</button>
     </div>
 
     <div class="container signin">
-        <p>Уже есть аккаунт? <a href="#">Войти</a>.</p>
+        <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>.</p>
     </div>
 </form>
 <script src="js/register.js"></script>

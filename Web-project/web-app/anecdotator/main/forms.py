@@ -1,8 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from anecdotator.main.models import User
+User = get_user_model()
 
 
-class RegisterForm(UserCreationForm):
+class UserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
