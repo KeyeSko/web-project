@@ -58,10 +58,10 @@
                 <div class="button mt-2 d-flex flex-row align-items-center">
 
                     <button class="btn btn-sm btn-outline-primary w-100"
-                            onclick="href='{% url 'password_change' %}'">Change password
+                            onclick="href={% url 'password_change' %}">Change password
                     </button>
                     <button class="btn btn-sm btn-primary w-100 ml-2"
-                            onclick="href='{% url 'logout' %}?next=/web/profile'">Logout
+                            onclick="href={% url 'logout' %}">Logout
                     </button>
 
 

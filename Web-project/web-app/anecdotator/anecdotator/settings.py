@@ -57,7 +57,7 @@ ROOT_URLCONF = 'anecdotator.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,5 +131,5 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-LOGIN_REDIRECT_URL = reverse_lazy("main:profile")
+LOGIN_REDIRECT_URL = "/profile"
 LOGOUT_REDIRECT_URL = "/"
