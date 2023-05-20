@@ -3,6 +3,23 @@
 {% block title %}Анекдоты про семью{%endblock%}
 
 {% block content %}
+<h1>Book List</h1>
+
+{% if anec_list %}
+<ul>
+
+    {% for anec in anec_list %}
+
+    <li>{{ anec.text }}</li>
+    <li>
+        {{anec.like_count}}
+    </li>
+    {% endfor %}
+
+</ul>
+{% else %}
+<p>There are no anecdots.</p>
+{% endif %}
 <link rel="stylesheet" href="{% static 'main/css/family.css'%}">
 <div class="anekdot">
     Муж заявляет жене: — Дорогая, с этого дня я бросаю пить! Жена: — А кто будет называть меня красавицей?
