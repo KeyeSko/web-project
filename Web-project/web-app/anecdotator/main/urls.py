@@ -7,7 +7,7 @@ from .views import Register
 urlpatterns = [
     path('', views.index, name='home'),
     path('contacts', views.contacts, name='contacts'),
-    path('family', views.family, name='family'),
+    path('family', views.AnecListView.as_view(), name='family'),
     path('profile', views.profile, name='profile'),
     path('accounts/', include("django.contrib.auth.urls")),
     #path('accounts', views.profile, name='profile'),

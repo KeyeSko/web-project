@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.views import View
+from django.views import View, generic
 
 from .forms import UserCreationForm
+from .models import Anecdot
 
 
 # Create your views here.
@@ -23,6 +24,17 @@ def contacts(request):
 @login_required
 def profile(request):
     return render(request, 'main/profile.html')
+
+class AnecListView(generic.ListView):
+    model = Anecdot
+
+    context_object_name = 'anec_list'
+
+    template_name = 'main/family.html'
+
+
+
+
 
 
 class Register(View):
