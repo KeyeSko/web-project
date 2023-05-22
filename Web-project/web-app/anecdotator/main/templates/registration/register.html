@@ -3,24 +3,28 @@
 <html lang="en">
 <head>
     <title>Анекдотатор</title>
-    <link rel="stylesheet" href="css/register.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="{% static 'main/css/register2.css'%}" asp-append-version="true"/>
 </head>
 <body>
 
 <form action="{% url 'register' %}" class="formValidation" method="post">
 
     <div class="container">
-        <h1>Регистрация</h1>
-        <p>Заполните форму для регистрации</p>
-        {{ form }}
-        {{ form.errors }}
-        {% csrf_token %}
-        <button class="validateBtn" type="submit" class="registerbtn">Зарегистрироваться</button>
+        <div class="register">
+            <h1 align="center">Регистрация</h1>
+            <p> Придумайте логин: {{ form.username }} </p>
+            <br>
+            <p> Придумайте пароль: {{ form.password1 }} </p>
+            <br>
+            <p> Повторите пароль: {{ form.password2 }} </p>
+            <br>
+            {{ form.errors }}
+            {% csrf_token %}
+        <button  class="validateBtn" type="submit" class="registerbtn">Зарегистрироваться</button>
+        <p align="center">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>.</p>
+        </div>
     </div>
 
-    <div class="container signin">
-        <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>.</p>
-    </div>
 </form>
 <script src="js/register.js"></script>
 </body>
