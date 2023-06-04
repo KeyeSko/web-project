@@ -1,0 +1,26 @@
+body{
+
+}
+
+DIV.container{
+    margin: 0;
+    background: #6600ff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+DIV.register{
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle
+
+}
+
+button{
+    display: block;
+    margin:0 auto;
+}
