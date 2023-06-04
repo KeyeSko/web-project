@@ -1,0 +1,110 @@
+{%extends 'main/mainlayot.html' %}
+{% load static %}
+{% block title %}Анекдоты про семью{%endblock%}
+
+{% block content %}
+
+<div class="ui grid">
+    <div class="eleven wide column">
+        {% for obj in qs %}
+
+        <div class="ui fluid card">
+
+
+            <div class="content">
+                <p> {{ obj.text }} </p>
+                <div class="right floated">
+                    <form action="{% url 'like-post-view' %}" method="GET" class='like-form' id='{{obj.id}}'>
+                        {% csrf_token %}
+                        <input type="hidden" name="anec_id" value={{obj.id}}>
+
+                        <button class="ui button like-btn{{obj.id}}">
+                            {% if profile not in obj.liked.all %}
+                            Like
+                            {% else %}
+                            Unlike
+                            {% endif %}
+                        </button>
+                        <div class="ui grid">
+                            <div class="column">
+                                <div class="like-count{{obj.id}}"> {{obj.num_likes}}</div>
+                            </div>
+                            <div class="column">
+                                likes
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+console.log('js')
+        $( document ).ready(function() {
+            let display = false
+
+            $('.like-form').click(function(e){
+                e.preventDefault()
+
+                const anec_id = $(this).attr('id')
+
+                const likeText = $(`.like-btn${anec_id}`).text()
+                const trim = $.trim(likeText)
+
+                const url = $(this).attr('action')
+
+                let res;
+                const likes = $(`.like-count${anec_id}`).text()
+                const trimCount = parseInt(likes)
+
+                console.log('action')
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'liked/',
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'anec_id':anec_id,
+                    },
+                    success: function(response) {
+
+                        if(trim === 'Unlike') {
+                            console.log('unlike')
+                            $(`.like-btn${anec_id}`).text('Like')
+                            res = response.likes
+                            console.log(res)
+                        } else {
+                            console.log('like')
+                            $(`.like-btn${anec_id}`).text('Unlike')
+
+                            res = response.likes
+                            console.log(res)
+                        }
+
+                        $(`.like-count${anec_id}`).text(res)
+                    },
+                    error: function(response) {
+                        console.log('error', response)
+                    }
+                })
+
+            })
+        });
+
+
+
+
+</script>
+
+{%endblock%}
