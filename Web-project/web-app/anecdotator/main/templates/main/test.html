@@ -12,7 +12,7 @@
 
 
             <div class="content">
-                <p> {{ obj.text }} </p>
+                <div class="anekdot"> {{ obj.text }} </div>
                 <div class="right floated">
                     <form action="{% url 'like-post-view' %}" method="GET" class='like-form' id='{{obj.id}}'>
                         {% csrf_token %}
@@ -50,12 +50,13 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous"></script>
 <script type="text/javascript">
-console.log('js')
         $( document ).ready(function() {
             let display = false
 
             $('.like-form').click(function(e){
                 e.preventDefault()
+
+                if({)
 
                 const anec_id = $(this).attr('id')
 
@@ -68,8 +69,6 @@ console.log('js')
                 const likes = $(`.like-count${anec_id}`).text()
                 const trimCount = parseInt(likes)
 
-                console.log('action')
-
                 $.ajax({
                     type: 'POST',
                     url: 'liked/',
@@ -80,22 +79,19 @@ console.log('js')
                     success: function(response) {
 
                         if(trim === 'Unlike') {
-                            console.log('unlike')
                             $(`.like-btn${anec_id}`).text('Like')
                             res = response.likes
-                            console.log(res)
                         } else {
-                            console.log('like')
                             $(`.like-btn${anec_id}`).text('Unlike')
 
                             res = response.likes
-                            console.log(res)
                         }
 
                         $(`.like-count${anec_id}`).text(res)
                     },
                     error: function(response) {
                         console.log('error', response)
+                        window.location.href = "{% url'main:/register' %}"
                     }
                 })
 

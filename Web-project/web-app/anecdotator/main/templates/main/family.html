@@ -3,34 +3,115 @@
 {% block title %}Анекдоты про семью{%endblock%}
 
 {% block content %}
-<h1>Book List</h1>
 
-{% if anec_list %}
-<ul>
-
-    {% for anec in anec_list %}
-
-    <li>{{ anec.text }}</li>
-    <li>
-        {{anec.like_count}}
-    </li>
-    {% endfor %}
-
-</ul>
-{% else %}
-<p>There are no anecdots.</p>
-{% endif %}
 <link rel="stylesheet" href="{% static 'main/css/family.css'%}">
-<div class="anekdot">
-    Муж заявляет жене: — Дорогая, с этого дня я бросаю пить! Жена: — А кто будет называть меня красавицей?
+
+
+<div class="row">
+    <div class="leftcolumn">
+        {% for obj in qs %}
+
+        <div class="ui fluid card">
+
+
+            <div class="card">
+                <p> {{ obj.text }} </p>
+                <div class="right floated">
+                    <form action="{% url 'like-post-view' %}" method="GET" class='like-form' id='{{obj.id}}'>
+                        {% csrf_token %}
+                        <input type="hidden" name="anec_id" value={{obj.id}}>
+
+                        <button class="ui button like-btn{{obj.id}}">
+                            {% if profile not in obj.liked.all %}
+                            Like
+                            {% else %}
+                            Unlike
+                            {% endif %}
+                        </button>
+                        <div class="ui grid">
+                            <div class="column">
+                                <div class="like-count{{obj.id}}"> {{obj.num_likes}}</div>
+                            </div>
+                            <div class="column">
+                                likes
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+    </div>
+
 </div>
-<div class="anekdot">
-    А на прошлый Новый год к нам через трубу опять залез Дед Мороз. Но тут неожиданно из командировки вернулся папа. В
-    тот год мне достался весь мешок с подарками — коробка конфет, три бутылки шампанского и пачка неудобных воздушных
-    шариков
-</div>
-<div class="anekdot">
-    Прихожу я, значит, в ЗАГС, чтобы выйти замуж, а мне говорят: "Жениха надо иметь с собой". Объясните мне ещё раз,
-    пожалуйста: за что я плачу налоги?! anekdotov.net
-</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+console.log('{{user}}')
+
+        $( document ).ready(function() {
+            let display = false
+
+            $('.like-form').click(function(e){
+                e.preventDefault()
+
+                if('{{user}}' === 'AnonymousUser'){
+                window.location.href = "{% url 'register' %}"
+                }
+
+                const anec_id = $(this).attr('id')
+
+                const likeText = $(`.like-btn${anec_id}`).text()
+                const trim = $.trim(likeText)
+
+                const url = $(this).attr('action')
+
+                let res;
+                const likes = $(`.like-count${anec_id}`).text()
+                const trimCount = parseInt(likes)
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'liked/',
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'anec_id':anec_id,
+                    },
+                    success: function(response) {
+
+                        if(trim === 'Unlike') {
+
+                            $(`.like-btn${anec_id}`).text('Like')
+                            res = response.likes
+
+                        } else {
+                            $(`.like-btn${anec_id}`).text('Unlike')
+
+                            res = response.likes
+                        }
+
+                        $(`.like-count${anec_id}`).text(res)
+                    },
+                    error: function(response) {
+                        console.log('error', response)
+                        window.location.href = "{% url 'register' %}"
+                    }
+                })
+
+            })
+        });
+
+
+
+
+
+</script>
+
 {%endblock%}

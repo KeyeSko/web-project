@@ -6,6 +6,46 @@
 <div class="contacts">
     <h2> Электронная почта: anekdot@yandex.ru</h2>
     <h2> Телефон: +79997777777</h2>
-    <h2> Адресс: Улица Пушкина</h2>
+    <h2> Адрес: Улица Пушкина</h2>
+</div>
+
+<div>
+    <form name="publish">
+        <p>Здесь вы можете оставить свой отзыв:</p>
+        <input type="text" name="message" placeholder="Отзыв"/>
+        <input type="submit" value="Оставить отзыв"/>
+    </form>
 </div>
 {%endblock%}
+{% block script %}
+<script type="text/javascript">
+document.forms.publish.onsubmit = function(e) {
+
+let tg = {
+token: "5696896333:AAHmgirmrAwUA0NvyeZiJKOOrnSHqpqHXFM", // Your bot's token that got from @BotFather
+chat_id: "1015603317" // The user's(that you want to send a message) telegram chat id
+}
+
+/**
+* By calling this function you can send message to a specific user()
+* @param {String} the text to send
+*
+*/
+function sendMessage(text)
+{
+const url = `https://api.telegram.org/bot${tg.token}/sendMessage?chat_id=${tg.chat_id}&text=${text}`; // The url to request
+const xht = new XMLHttpRequest();
+xht.open("GET", url);
+xht.send();
+}
+
+// Now you can send any text(even a form data) by calling sendMessage function.
+// For example if you want to send the 'hello', you can call that function like this:
+let user = '{{user}}'
+var message = this.message.value;
+console.log(message)
+sendMessage("Пользователь {{user}} оставил отзыв: " + message);
+};
+
+</script>
+{% endblock %}

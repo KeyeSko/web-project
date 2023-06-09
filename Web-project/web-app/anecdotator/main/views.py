@@ -17,7 +17,33 @@ def index(request):
 
 
 def family(request):
-    return render(request, 'main/family.html')
+    qs = Anecdot.objects.all()
+
+    # initials
+    p_form = AnecdotModelForm()
+    post_added = False
+
+    profile = request.user
+    # profile = User.objects.get(user=request.user)
+
+    if 'submit_p_form' in request.POST:
+        print(request.POST)
+        p_form = AnecdotModelForm(request.POST, request.FILES)
+        if p_form.is_valid():
+            instance = p_form.save(commit=False)
+            instance.author = profile
+            instance.save()
+            p_form = AnecdotModelForm()
+            post_added = True
+
+    context = {
+        'qs': qs,
+        'profile': profile,
+        'p_form': p_form,
+        'post_added': post_added,
+    }
+
+    return render(request, 'main/family.html', context)
 
 
 def contacts(request):
@@ -37,8 +63,8 @@ class AnecListView(generic.ListView):
     template_name = 'main/family.html'
 
 
-@login_required
-def post_comment_create_and_list_view(request):
+
+def anecdot_list_view(request):
     qs = Anecdot.objects.all()
 
     # initials
