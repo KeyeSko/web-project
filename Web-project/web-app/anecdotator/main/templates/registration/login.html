@@ -9,23 +9,27 @@
 <form action="{% url 'login' %} " class="formValidation" method="post">
 
     <div class="container">
-        <h1>Авторизация</h1>
-        <p>Заполните форму для авторизации</p>
+        <div class="register">
+            <h1 align="center">Регистрация</h1>
+            <p>Заполните форму для авторизации</p>
 
-        {{ form }}
-        {% if form.errors %}
-        <p>{{ form.errors.error }}</p>
-        {% endif %}
+            <p>Логин: {{ form.username }}</p>
+            <br>
+            <p>Пароль: {{ form.password }}</p>
+            <br>
+            {% if form.errors %}
+            <p>{{ form.errors.error }}</p>
+            {% endif %}
 
 
-        {% csrf_token %}
-        <button class="registerbtn">Войти</button>
+            {% csrf_token %}
+            <button class="validatebtn" type="submit" class="registerbtn">Войти</button>
+
+            <p align="center">Еще нет аккаунта? <a style="color: coral;" class="login" href="{% url 'register' %}">Зарегестрироваться</a>.</p>
+        </div>
     </div>
 
-    <div class="container signin">
-        <p>Уже есть аккаунт? <a href="{% url 'register' %}">Зарегестрироваться</a>.</p>
-    </div>
+
 </form>
-<script src="{% static 'main/js/register.js'%}"></script>
 </body>
 </html>

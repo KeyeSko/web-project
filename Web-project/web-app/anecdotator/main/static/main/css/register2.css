@@ -24,3 +24,12 @@ button{
     display: block;
     margin:0 auto;
 }
+
+DIV.login{
+color: #000000;
+}
+
+a:link {
+font-family: Arial;
+}
+

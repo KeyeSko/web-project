@@ -1,52 +1,34 @@
-/* Add padding to containers */
-.container {
-  padding: 16px;
+body{
+
 }
 
-/* Full-width input fields */
-input[type=email], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
+DIV.container{
+    margin: 0;
+    background: #6600ff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
 }
 
-input[type=email]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+DIV.register{
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle
+
 }
 
-/* Overwrite default styles of hr */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
+button{
+    display: block;
+    margin:0 auto;
 }
 
-/* Set a style for the submit/register button */
-.registerbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+DIV.login{
+color: #000000;
 }
 
-.registerbtn:hover {
-  opacity:1;
-}register.css
-
-/* Add a blue text color to links */
-a {
-  color: dodgerblue;
-}
-
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-  background-color: #f1f1f1;
-  text-align: center;
+a:link {
+font-family: Arial;
 }
